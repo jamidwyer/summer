@@ -1,0 +1,33 @@
+<?php
+//TODO: run on scotch
+//TODO: run on my site
+//TODO: commit
+//TODO: get menu item working
+//TODO: get form items in place
+//TODO: get submit working
+//TODO: validate
+//http://stackoverflow.com/questions/15375616/how-to-use-form-validation-in-drupal-7
+/**
+ * @file
+ * Adds numbers
+ */
+ 
+  function summer_menu() {
+    $items['number'] = array(
+      'page callback' => 'summer_number_form',
+    );
+    return $items;
+  }
+  
+  function summer_number_form($form, &$form_state) {
+    return $form;
+  }
+  
+  $form = drupal_get_form('summer_number_form');
+
+  function my_module_example_form_validate($form, &$form_state) {
+  // Validation logic.
+   }
+    function my_module_example_form_submit($form, &$form_state) {
+    // Submission logic.
+    }
