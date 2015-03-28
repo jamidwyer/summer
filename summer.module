@@ -1,15 +1,16 @@
 <?php
-//TODO: validate
-//TODO: code cleanup
-//TODO: url, yuck
-//http://stackoverflow.com/questions/15375616/how-to-use-form-validation-in-drupal-7
 /**
  * @file
  * Adds numbers
  */
  
+/**
+ * Implements hook_menu().
+ *
+ * Adds Summer link to main menu.
+ */
 function summer_menu() {
-  $items['drupal/number'] = array(
+  $items['summer'] = array(
     'title' => 'Summer',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('summer_form'),
@@ -20,6 +21,9 @@ function summer_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_form().
+ */
 function summer_form($form, &$form_state) {
   $form['num1'] = array(
     '#type' => 'textfield',
@@ -46,7 +50,6 @@ function summer_form($form, &$form_state) {
 }
 
 function summer_form_validate($form, &$form_state) {
-  //TODO: need isNum or something
   if (!is_numeric($form_state['values']['num1'])){
     form_set_error('num1', t('Number 1 must be a number.'));
   }
