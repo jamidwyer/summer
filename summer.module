@@ -1,8 +1,7 @@
 <?php
-error_reporting(E_ALL);
-//TODO: get form items in place
-//TODO: get submit working
 //TODO: validate
+//TODO: code cleanup
+//TODO: url, yuck
 //http://stackoverflow.com/questions/15375616/how-to-use-form-validation-in-drupal-7
 /**
  * @file
@@ -10,50 +9,50 @@ error_reporting(E_ALL);
  */
  
 function summer_menu() {
-    $items['drupal/number'] = array(
-        'title' => 'Summer',
-        'page callback' => 'drupal_get_form',
-        'page arguments' => array('summer_form'),
-        'access callback' => TRUE,
-        'menu_name' => 'main-menu',
-        'type' => MENU_NORMAL_ITEM        
-    );
-    return $items;
+  $items['drupal/number'] = array(
+    'title' => 'Summer',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('summer_form'),
+    'access callback' => TRUE,
+    'menu_name' => 'main-menu',
+    'type' => MENU_NORMAL_ITEM    
+  );
+  return $items;
 }
 
 function summer_form($form, &$form_state) {
-    $form['num1'] = array(
-        '#type' => 'textfield',
-        '#title' => 'Number 1 (Maximum ten digits.)',
-        '#size' => 10,
-        '#maxlength' => 10,
-        '#required' => TRUE
-    );
+  $form['num1'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Number 1 (Maximum ten digits.)',
+    '#size' => 10,
+    '#maxlength' => 10,
+    '#required' => TRUE
+  );
   
-    $form['num2'] = array(
-        '#type' => 'textfield',
-        '#title' => 'Number 2 (Maximum ten digits.)',
-        '#size' => 10,
-        '#maxlength' => 10,
-        '#required' => TRUE
-    );
+  $form['num2'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Number 2 (Maximum ten digits.)',
+    '#size' => 10,
+    '#maxlength' => 10,
+    '#required' => TRUE
+  );
 
-    $form['submit_button'] = array(
-        '#type' => 'submit',
-        '#value' => t('Submit!')
-    );
-    
-    return $form;
+  $form['submit_button'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit!')
+  );
+  
+  return $form;
 }
 
 function summer_form_validate($form, &$form_state) {
-    //TODO: need isNum or something
-    if (!($form_state['values']['num1'] > 0)){
-        form_set_error('price', t('Price must be a positive number.'));
-    }
+  //TODO: need isNum or something
+  if (!($form_state['values']['num1'] > 0)){
+    form_set_error('price', t('Price must be a positive number.'));
+  }
 }
+
 function summer_form_submit($form, &$form_state) {
-var_dump($form);
- $sum = $form_state['values']['num1'] + $form_state['values']['num2']; 
-    drupal_set_message($sum);
+  $sum = $form_state['values']['num1'] + $form_state['values']['num2']; 
+  drupal_set_message($sum);
 }
